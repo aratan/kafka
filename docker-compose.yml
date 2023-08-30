@@ -6,7 +6,7 @@ services:
     ports:
       - '2181:2181'
     networks:
-      - kafka-net
+      - mi-red
 
   kafka:
     build:
@@ -18,7 +18,8 @@ services:
     depends_on:
       - zookeeper
     networks:
-      - kafka-net
+      - mi-red
 
 networks:
-  kafka-net:
+  mi-red:
+    external: true
