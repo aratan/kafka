@@ -1,0 +1,24 @@
+version: '3'
+services:
+  zookeeper:
+    image: 'zookeeper:3.7.0'
+    container_name: 'zookeeper'
+    ports:
+      - '2181:2181'
+    networks:
+      - kafka-net
+
+  kafka:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: 'kafka'
+    ports:
+      - '9092:9092'
+    depends_on:
+      - zookeeper
+    networks:
+      - kafka-net
+
+networks:
+  kafka-net:
